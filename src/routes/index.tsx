@@ -3,17 +3,16 @@ import {
   BookOpen, Brain, Check, Footprints, Heart, Lightbulb, Palette, Printer, Search, ShieldCheck,
   Shuffle, Sparkles, Star, Users, Wand2, FileText, Home, Clock,
 } from "lucide-react";
-import { CHECKOUT_URL, PRICE } from "@/config/offer";
+import { CHECKOUT_URL, ORIGINAL_PRICE, PRICE } from "@/config/offer";
 import { Carousel, CtaButton, FaqItem, Reveal, SectionHeading, Countdown, type Slide } from "@/components/landing/ui";
-import hero from "@/assets/hero.jpg";
+import cover from "@/assets/kit-capa.jpg.asset.json";
 import bonusQuadro from "@/assets/bonus-quadro.jpg";
 import bonusLivro from "@/assets/bonus-livro.jpg";
-// Prévias ilustrativas — substituir pelas páginas reais do PDF final.
-import p1 from "@/assets/preview-1.jpg";
-import p2 from "@/assets/preview-2.jpg";
-import p3 from "@/assets/preview-3.jpg";
-import p4 from "@/assets/preview-4.jpg";
-import p5 from "@/assets/preview-5.jpg";
+import p1 from "@/assets/kit-cacadores-de-cores.jpg.asset.json";
+import p2 from "@/assets/kit-caminho-da-cenoura.jpg.asset.json";
+import p3 from "@/assets/kit-complete-o-desenho.jpg.asset.json";
+import p4 from "@/assets/kit-memoria-dos-animais.jpg.asset.json";
+import p5 from "@/assets/kit-cartoes-de-movimento.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,19 +46,16 @@ const benefits = [
 ];
 
 const slides: Slide[] = [
-  { src: p1, title: "Aprender Brincando", alt: "Prévia ilustrativa: ligar cada animal à sua sombra" },
-  { src: p2, title: "Pequenos Detetives", alt: "Prévia ilustrativa: encontrar joaninhas, folhas e bolotas no jardim" },
-  { src: p3, title: "Criatividade sem Limites", alt: "Prévia ilustrativa: completar o desenho da casinha" },
-  { src: p4, title: "Jogos para Compartilhar", alt: "Prévia ilustrativa: jogo de trilha com animais" },
-  { src: p5, title: "Movimento e Aventura", alt: "Prévia ilustrativa: cartões de movimento como pular e equilibrar" },
+  { src: cover.url, title: "Capa do Kit Pequenos Exploradores", alt: "Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" },
+  { src: p1.url, title: "Caçadores de Cores", alt: "Página real do kit: ligar os objetos às suas cores" },
+  { src: p2.url, title: "O Caminho da Cenoura", alt: "Página real do kit: labirinto para levar o coelhinho até a cenoura" },
+  { src: p3.url, title: "Complete o Desenho", alt: "Página real do kit: completar e pintar uma borboleta, uma casa e um rosto" },
+  { src: p4.url, title: "Jogo da Memória dos Animais", alt: "Página real do kit: cartas de animais para recortar e encontrar os pares" },
+  { src: p5.url, title: "Cartões de Movimento", alt: "Página real do kit: oito cartões com movimentos para brincar" },
 ];
 
-// TODO: substituir pelos depoimentos autênticos antes de publicar.
-const testimonials = [
-  { label: "Praticidade", text: "[Inserir depoimento autêntico de um cliente que fale sobre a praticidade de encontrar várias atividades organizadas em um único material.]" },
-  { label: "Criatividade", text: "[Inserir depoimento autêntico de um cliente que descreva a experiência da criança com as atividades do kit.]" },
-  { label: "Momentos em família", text: "[Inserir depoimento autêntico de um cliente que compartilhe como utilizou o material em momentos de brincadeira em família.]" },
-];
+// Exibir apenas relatos autênticos enviados com autorização do cliente.
+const testimonials: { name: string; label: string; text: string }[] = [];
 
 const faqs = [
   { q: "Para qual idade o material é indicado?", a: "O Kit Pequenos Exploradores foi desenvolvido para crianças de 3 a 6 anos. A participação e a adaptação das atividades devem considerar a idade, as habilidades e as necessidades de cada criança, com supervisão adulta quando necessário." },
@@ -113,7 +109,7 @@ function Index() {
           </div>
           <div className="relative">
             <div className="absolute -inset-3 rotate-2 rounded-3xl bg-mint-soft" aria-hidden />
-            <img src={hero} alt="Páginas impressas do Kit Pequenos Exploradores sobre a mesa, com uma criança fazendo uma atividade com ajuda de um adulto" width={1280} height={1024} className="relative w-full rounded-3xl shadow-soft" />
+            <img src={cover.url} alt="Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" width={768} height={1044} className="relative mx-auto w-full max-w-sm rounded-2xl shadow-soft" />
           </div>
         </div>
       </section>
@@ -201,7 +197,7 @@ function Index() {
             <SectionHeading title="Prepare-se Para Uma Nova Aventura!" subtitle="Garanta o Kit Pequenos Exploradores e tenha 50 atividades infantis, mais dois bônus digitais para complementar a diversão." />
             <div className="grid overflow-hidden rounded-3xl border-2 border-sun bg-card shadow-soft md:grid-cols-2">
               <div className="bg-sun-soft p-6">
-                <img src={hero} alt="Mockup do Kit Pequenos Exploradores" width={1280} height={1024} loading="lazy" className="w-full rounded-2xl shadow-soft" />
+                <img src={cover.url} alt="Capa do PDF Kit Pequenos Exploradores" width={768} height={1044} loading="lazy" className="mx-auto w-full max-w-xs rounded-2xl shadow-soft" />
                 <div className="mt-4 grid grid-cols-2 gap-4">
                   <img src={bonusQuadro} alt="Bônus 1: Quadro de Conquistas" width={1024} height={1024} loading="lazy" className="aspect-square w-full rounded-xl object-cover shadow-soft" />
                   <img src={bonusLivro} alt="Bônus 2: Mini Livro Para Colorir" width={1024} height={1024} loading="lazy" className="aspect-square w-full rounded-xl object-cover shadow-soft" />
@@ -217,10 +213,11 @@ function Index() {
                   ))}
                 </ul>
                 <div className="text-center">
-                  <p className="text-sm text-muted-foreground">Tudo isso por apenas</p>
+                  <p className="text-lg text-muted-foreground">De <del>R$ {ORIGINAL_PRICE}</del> por apenas</p>
                   <p className="font-display text-6xl font-semibold text-navy">
                     <span className="align-top text-2xl">R$</span> {PRICE}
                   </p>
+                  <p className="mt-2 font-semibold text-coral">Economize R$ 10,00</p>
                   <p className="text-sm text-muted-foreground">pagamento único · acesso digital após a confirmação</p>
                 </div>
                 <Countdown />
@@ -240,12 +237,12 @@ function Index() {
         <Reveal>
           <SectionHeading title="Dê Uma Espiadinha no Mundo dos Pequenos Exploradores!" subtitle="Veja alguns exemplos das atividades que fazem parte do kit." />
           <Carousel slides={slides} />
-          <p className="mt-4 text-center text-xs text-muted-foreground">Imagens ilustrativas.</p>
+          <p className="mt-4 text-center text-xs text-muted-foreground">Capa e páginas reais do Kit Pequenos Exploradores.</p>
         </Reveal>
       </section>
 
       {/* 7. DEPOIMENTOS */}
-      <section className="bg-coral-soft py-20">
+      {testimonials.length > 0 && <section className="bg-coral-soft py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal>
             <SectionHeading title="Uma Experiência Pensada Para Pequenos Exploradores!" />
@@ -257,7 +254,7 @@ function Index() {
                       <Home className="h-6 w-6 text-navy" />
                     </div>
                     <div>
-                      <p className="font-display font-semibold text-navy">[Nome do cliente]</p>
+                      <p className="font-display font-semibold text-navy">{t.name}</p>
                       <p className="text-xs text-muted-foreground">{t.label}</p>
                     </div>
                   </div>
@@ -267,7 +264,7 @@ function Index() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section>}
 
       {/* 8. GARANTIA */}
       <section className="mx-auto max-w-4xl px-5 py-20">

@@ -5,5 +5,6 @@
 export const CHECKOUT_URL = "";
 
 export const PRICE = "9,90"; // em reais (R$)
+export const ORIGINAL_PRICE = "19,90";
 
 export const TIMER_MINUTES = 15;
