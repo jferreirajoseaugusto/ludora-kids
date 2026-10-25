@@ -10,4 +10,5 @@
 <!-- LOVABLE:END -->
 
 - Keep offer amounts in the central offer configuration so every price display uses the same values.
+- Keep bonus quantities in the central offer configuration so descriptions and checkout summaries stay consistent.
 - Display uploaded product previews through Lovable Assets pointers; publish only selected page images, not the paid PDF itself.

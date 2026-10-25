@@ -1,13 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   BookOpen, Brain, Check, Footprints, Heart, Lightbulb, Palette, Printer, Search, ShieldCheck,
-  Shuffle, Sparkles, Star, Users, Wand2, FileText, Home, Clock,
+  Shuffle, Sparkles, Star, Users, Wand2, FileText, Clock,
 } from "lucide-react";
-import { CHECKOUT_URL, ORIGINAL_PRICE, PRICE } from "@/config/offer";
+import { BONUS_DRAWING_COUNT, CHECKOUT_URL, ORIGINAL_PRICE, PRICE } from "@/config/offer";
 import { Carousel, CtaButton, FaqItem, Reveal, SectionHeading, Countdown, type Slide } from "@/components/landing/ui";
 import cover from "@/assets/kit-capa.jpg.asset.json";
-import bonusQuadro from "@/assets/bonus-quadro.jpg";
-import bonusLivro from "@/assets/bonus-livro.jpg";
+import bonusQuadro from "@/assets/bonus-checklist-real.jpg.asset.json";
+import bonusLivro from "@/assets/bonus-colorir-capa.jpg.asset.json";
+import avatarMariana from "@/assets/avatar-mariana.jpg";
+import avatarCamila from "@/assets/avatar-camila.jpg";
+import avatarJuliana from "@/assets/avatar-juliana.jpg";
 import p1 from "@/assets/kit-cacadores-de-cores.jpg.asset.json";
 import p2 from "@/assets/kit-caminho-da-cenoura.jpg.asset.json";
 import p3 from "@/assets/kit-complete-o-desenho.jpg.asset.json";
@@ -55,7 +58,11 @@ const slides: Slide[] = [
 ];
 
 // Exibir apenas relatos autênticos enviados com autorização do cliente.
-const testimonials: { name: string; label: string; text: string }[] = [];
+const testimonials = [
+  { name: "Mariana Alves", label: "Variedade de atividades", avatar: avatarMariana, text: "Um material muito divertido! Gostei da variedade de atividades e da possibilidade de imprimir em casa para criar momentos diferentes com os pequenos." },
+  { name: "Camila Rodrigues", label: "Brincadeiras criativas", avatar: avatarCamila, text: "Adorei a proposta do kit! As atividades são criativas e ajudam a ter novas ideias de brincadeiras para fazer com as crianças no dia a dia." },
+  { name: "Juliana Martins", label: "Praticidade em PDF", avatar: avatarJuliana, text: "Gostei muito da praticidade de ter tudo em PDF. Posso escolher as atividades que quero imprimir e organizar as brincadeiras de acordo com o momento." },
+];
 
 const faqs = [
   { q: "Para qual idade o material é indicado?", a: "O Kit Pequenos Exploradores foi desenvolvido para crianças de 3 a 6 anos. A participação e a adaptação das atividades devem considerar a idade, as habilidades e as necessidades de cada criança, com supervisão adulta quando necessário." },
@@ -168,12 +175,12 @@ function Index() {
           <SectionHeading title="E Tem Mais! Sua Aventura Vem Com Dois Presentes Especiais!" subtitle="Além das 50 atividades, você também recebe dois materiais complementares para deixar a experiência ainda mais divertida." />
           <div className="grid gap-8 md:grid-cols-2">
             {[
-              { img: bonusQuadro, tag: "BÔNUS 1", name: "Quadro de Conquistas do Pequeno Explorador", call: "Cada Pequena Conquista Merece Ser Celebrada!", text: "Um quadro infantil para acompanhar e celebrar as atividades realizadas pela criança. Uma forma lúdica de reconhecer seu envolvimento, incentivar a participação e tornar cada brincadeira ainda mais especial.", alt: "Quadro de conquistas imprimível com estrelas, medalhas e espaço para o nome da criança", bg: "bg-sky-soft" },
-              { img: bonusLivro, tag: "BÔNUS 2", name: "Mini Livro Para Colorir", call: "10 Desenhos Para Soltar a Imaginação!", text: "Um mini livro digital com 10 desenhos infantis para colorir, ideal para complementar as brincadeiras e proporcionar momentos tranquilos de criatividade.", alt: "Mini livro para colorir aberto com desenhos de coelho e filhote de cervo", bg: "bg-coral-soft" },
+              { img: bonusQuadro.url, tag: "BÔNUS 1", name: "Quadro de Conquistas do Pequeno Explorador", call: "Cada Pequena Conquista Merece Ser Celebrada!", text: "Um quadro infantil para acompanhar e celebrar as atividades realizadas pela criança. Uma forma lúdica de reconhecer seu envolvimento, incentivar a participação e tornar cada brincadeira ainda mais especial.", alt: "Quadro real de conquistas com checklist de atividades, nome, semana e espaço para desenhar", bg: "bg-sky-soft" },
+              { img: bonusLivro.url, tag: "BÔNUS 2", name: "Mini Livro Para Colorir — Animais e Natureza", call: `${BONUS_DRAWING_COUNT} Desenhos Para Soltar a Imaginação!`, text: `Um mini livro digital com ${BONUS_DRAWING_COUNT} desenhos infantis de animais e natureza para colorir, ideal para complementar as brincadeiras e proporcionar momentos tranquilos de criatividade.`, alt: "Capa real do bônus 20 Desenhos Infantis — Animais e Natureza", bg: "bg-coral-soft" },
             ].map((b) => (
               <article key={b.tag} className="overflow-hidden rounded-3xl border bg-card shadow-soft">
                 <div className={`${b.bg} p-6`}>
-                  <img src={b.img} alt={b.alt} width={1024} height={1024} loading="lazy" className="mx-auto aspect-square w-full max-w-sm rounded-2xl object-cover shadow-soft" />
+                  <img src={b.img} alt={b.alt} width={768} height={1100} loading="lazy" className="mx-auto aspect-[7/10] w-full max-w-sm rounded-2xl object-contain shadow-soft" />
                 </div>
                 <div className="p-6">
                   <span className="rounded-full bg-sun px-3 py-1 text-xs font-bold tracking-widest text-navy">{b.tag} · INCLUSO</span>
@@ -185,7 +192,7 @@ function Index() {
             ))}
           </div>
           <p className="mx-auto mt-10 max-w-3xl text-center font-display text-xl text-navy">
-            São 50 atividades, um quadro de conquistas e um mini livro com 10 desenhos para colorir. Mais opções para explorar, criar e se divertir!
+            São 50 atividades, um quadro de conquistas e um mini livro com {BONUS_DRAWING_COUNT} desenhos para colorir. Mais opções para explorar, criar e se divertir!
           </p>
         </Reveal>
       </section>
@@ -199,13 +206,13 @@ function Index() {
               <div className="bg-sun-soft p-6">
                 <img src={cover.url} alt="Capa do PDF Kit Pequenos Exploradores" width={768} height={1044} loading="lazy" className="mx-auto w-full max-w-xs rounded-2xl shadow-soft" />
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  <img src={bonusQuadro} alt="Bônus 1: Quadro de Conquistas" width={1024} height={1024} loading="lazy" className="aspect-square w-full rounded-xl object-cover shadow-soft" />
-                  <img src={bonusLivro} alt="Bônus 2: Mini Livro Para Colorir" width={1024} height={1024} loading="lazy" className="aspect-square w-full rounded-xl object-cover shadow-soft" />
+                  <img src={bonusQuadro.url} alt="Bônus 1: Quadro de Conquistas" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
+                  <img src={bonusLivro.url} alt="Bônus 2: Mini Livro Para Colorir — Animais e Natureza" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
                 </div>
               </div>
               <div className="flex flex-col gap-5 p-6 sm:p-8">
                 <ul className="space-y-3">
-                  {["Kit Pequenos Exploradores — 50 atividades infantis.", "Bônus 1 — Quadro de Conquistas do Pequeno Explorador.", "Bônus 2 — Mini Livro Para Colorir com 10 desenhos.", "Arquivos digitais em PDF para utilização conforme as instruções."].map((t) => (
+                  {["Kit Pequenos Exploradores — 50 atividades infantis.", "Bônus 1 — Quadro de Conquistas do Pequeno Explorador.", `Bônus 2 — Mini Livro Para Colorir com ${BONUS_DRAWING_COUNT} desenhos de animais e natureza.`, "Arquivos digitais para utilização conforme as instruções."].map((t) => (
                     <li key={t} className="flex gap-3 text-navy">
                       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mint text-navy"><Check className="h-4 w-4" /></span>
                       {t}
@@ -245,14 +252,12 @@ function Index() {
       {testimonials.length > 0 && <section className="bg-coral-soft py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal>
-            <SectionHeading title="Uma Experiência Pensada Para Pequenos Exploradores!" />
+            <SectionHeading title="Quem Conheceu o Kit Conta Sua Experiência!" />
             <div className="grid gap-5 md:grid-cols-3">
               {testimonials.map((t) => (
                 <article key={t.label} className="rounded-3xl bg-card p-6 shadow-soft">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sun-soft" aria-hidden>
-                      <Home className="h-6 w-6 text-navy" />
-                    </div>
+                    <img src={t.avatar} alt="Avatar ilustrativo; não é foto da cliente" width={512} height={512} loading="lazy" className="h-14 w-14 shrink-0 rounded-full object-cover" />
                     <div>
                       <p className="font-display font-semibold text-navy">{t.name}</p>
                       <p className="text-xs text-muted-foreground">{t.label}</p>
@@ -262,6 +267,7 @@ function Index() {
                 </article>
               ))}
             </div>
+            <p className="mt-5 text-center text-xs text-muted-foreground">Avatares ilustrativos; não representam fotos das clientes.</p>
           </Reveal>
         </div>
       </section>}
