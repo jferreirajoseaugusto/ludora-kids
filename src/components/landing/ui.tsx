@@ -171,7 +171,7 @@ export function Carousel({ slides }: { slides: Slide[] }) {
               className="block w-full overflow-hidden rounded-2xl border bg-card shadow-soft focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/30"
               aria-label={`Ampliar: ${s.title}`}
             >
-              <img src={s.src} alt={s.alt} width={768} height={1024} loading="lazy" className="aspect-[3/4] w-full object-cover" />
+              <img src={s.src} alt={s.alt} width={768} height={1044} loading="lazy" className="aspect-[768/1044] w-full object-contain" />
             </button>
             <figcaption className="mt-3 text-center font-display font-medium text-navy">{s.title}</figcaption>
           </figure>
