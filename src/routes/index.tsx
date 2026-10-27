@@ -5,17 +5,17 @@ import {
 } from "lucide-react";
 import { BONUS_DRAWING_COUNT, CHECKOUT_URL, ORIGINAL_PRICE, PRICE } from "@/config/offer";
 import { Carousel, CtaButton, FaqItem, Reveal, SectionHeading, Countdown, type Slide } from "@/components/landing/ui";
-import cover from "@/assets/hero.jpg";
-import bonusQuadro from "@/assets/bonus-quadro.jpg";
-import bonusLivro from "@/assets/bonus-livro.jpg";
+import cover from "@/assets/kit-capa.jpg.asset.json";
+import bonusQuadro from "@/assets/bonus-checklist-real.jpg.asset.json";
+import bonusLivro from "@/assets/bonus-colorir-capa.jpg.asset.json";
 import avatarMariana from "@/assets/avatar-mariana.jpg";
 import avatarCamila from "@/assets/avatar-camila.jpg";
 import avatarJuliana from "@/assets/avatar-juliana.jpg";
-import p1 from "@/assets/preview-1.jpg";
-import p2 from "@/assets/preview-2.jpg";
-import p3 from "@/assets/preview-3.jpg";
-import p4 from "@/assets/preview-4.jpg";
-import p5 from "@/assets/preview-5.jpg";
+import p1 from "@/assets/kit-cacadores-de-cores.jpg.asset.json";
+import p2 from "@/assets/kit-caminho-da-cenoura.jpg.asset.json";
+import p3 from "@/assets/kit-complete-o-desenho.jpg.asset.json";
+import p4 from "@/assets/kit-memoria-dos-animais.jpg.asset.json";
+import p5 from "@/assets/kit-cartoes-de-movimento.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,12 +49,12 @@ const benefits = [
 ];
 
 const slides: Slide[] = [
-  { src: cover, title: "Capa do Kit Pequenos Exploradores", alt: "Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" },
-  { src: p1, title: "Caçadores de Cores", alt: "Página real do kit: ligar os objetos às suas cores" },
-  { src: p2, title: "O Caminho da Cenoura", alt: "Página real do kit: labirinto para levar o coelhinho até a cenoura" },
-  { src: p3, title: "Complete o Desenho", alt: "Página real do kit: completar e pintar uma borboleta, uma casa e um rosto" },
-  { src: p4, title: "Jogo da Memória dos Animais", alt: "Página real do kit: cartas de animais para recortar e encontrar os pares" },
-  { src: p5, title: "Cartões de Movimento", alt: "Página real do kit: oito cartões com movimentos para brincar" },
+  { src: cover.url, title: "Capa do Kit Pequenos Exploradores", alt: "Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" },
+  { src: p1.url, title: "Caçadores de Cores", alt: "Página real do kit: ligar os objetos às suas cores" },
+  { src: p2.url, title: "O Caminho da Cenoura", alt: "Página real do kit: labirinto para levar o coelhinho até a cenoura" },
+  { src: p3.url, title: "Complete o Desenho", alt: "Página real do kit: completar e pintar uma borboleta, uma casa e um rosto" },
+  { src: p4.url, title: "Jogo da Memória dos Animais", alt: "Página real do kit: cartas de animais para recortar e encontrar os pares" },
+  { src: p5.url, title: "Cartões de Movimento", alt: "Página real do kit: oito cartões com movimentos para brincar" },
 ];
 
 // Exibir apenas relatos autênticos enviados com autorização do cliente.
@@ -116,7 +116,7 @@ function Index() {
           </div>
           <div className="relative">
             <div className="absolute -inset-3 rotate-2 rounded-3xl bg-mint-soft" aria-hidden />
-            <img src={cover} alt="Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" width={768} height={1044} className="relative mx-auto w-full max-w-sm rounded-2xl shadow-soft" />
+            <img src={cover.url} alt="Capa real do Kit Pequenos Exploradores — 50 Brincadeiras Infantis" width={768} height={1044} className="relative mx-auto w-full max-w-sm rounded-2xl shadow-soft" />
           </div>
         </div>
       </section>
@@ -175,8 +175,8 @@ function Index() {
           <SectionHeading title="E Tem Mais! Sua Aventura Vem Com Dois Presentes Especiais!" subtitle="Além das 50 atividades, você também recebe dois materiais complementares para deixar a experiência ainda mais divertida." />
           <div className="grid gap-8 md:grid-cols-2">
             {[
-              { img: bonusQuadro, tag: "BÔNUS 1", name: "Quadro de Conquistas do Pequeno Explorador", call: "Cada Pequena Conquista Merece Ser Celebrada!", text: "Um quadro infantil para acompanhar e celebrar as atividades realizadas pela criança. Uma forma lúdica de reconhecer seu envolvimento, incentivar a participação e tornar cada brincadeira ainda mais especial.", alt: "Quadro real de conquistas com checklist de atividades, nome, semana e espaço para desenhar", bg: "bg-sky-soft" },
-              { img: bonusLivro, tag: "BÔNUS 2", name: "Mini Livro Para Colorir — Animais e Natureza", call: `${BONUS_DRAWING_COUNT} Desenhos Para Soltar a Imaginação!`, text: `Um mini livro digital com ${BONUS_DRAWING_COUNT} desenhos infantis de animais e natureza para colorir, ideal para complementar as brincadeiras e proporcionar momentos tranquilos de criatividade.`, alt: "Capa real do bônus 20 Desenhos Infantis — Animais e Natureza", bg: "bg-coral-soft" },
+              { img: bonusQuadro.url, tag: "BÔNUS 1", name: "Quadro de Conquistas do Pequeno Explorador", call: "Cada Pequena Conquista Merece Ser Celebrada!", text: "Um quadro infantil para acompanhar e celebrar as atividades realizadas pela criança. Uma forma lúdica de reconhecer seu envolvimento, incentivar a participação e tornar cada brincadeira ainda mais especial.", alt: "Quadro real de conquistas com checklist de atividades, nome, semana e espaço para desenhar", bg: "bg-sky-soft" },
+              { img: bonusLivro.url, tag: "BÔNUS 2", name: "Mini Livro Para Colorir — Animais e Natureza", call: `${BONUS_DRAWING_COUNT} Desenhos Para Soltar a Imaginação!`, text: `Um mini livro digital com ${BONUS_DRAWING_COUNT} desenhos infantis de animais e natureza para colorir, ideal para complementar as brincadeiras e proporcionar momentos tranquilos de criatividade.`, alt: "Capa real do bônus 20 Desenhos Infantis — Animais e Natureza", bg: "bg-coral-soft" },
             ].map((b) => (
               <article key={b.tag} className="overflow-hidden rounded-3xl border bg-card shadow-soft">
                 <div className={`${b.bg} p-6`}>
@@ -204,10 +204,10 @@ function Index() {
             <SectionHeading title="Prepare-se Para Uma Nova Aventura!" subtitle="Garanta o Kit Pequenos Exploradores e tenha 50 atividades infantis, mais dois bônus digitais para complementar a diversão." />
             <div className="grid overflow-hidden rounded-3xl border-2 border-sun bg-card shadow-soft md:grid-cols-2">
               <div className="bg-sun-soft p-6">
-                <img src={cover} alt="Capa do PDF Kit Pequenos Exploradores" width={768} height={1044} loading="lazy" className="mx-auto w-full max-w-xs rounded-2xl shadow-soft" />
+                <img src={cover.url} alt="Capa do PDF Kit Pequenos Exploradores" width={768} height={1044} loading="lazy" className="mx-auto w-full max-w-xs rounded-2xl shadow-soft" />
                 <div className="mt-4 grid grid-cols-2 gap-4">
-                  <img src={bonusQuadro} alt="Bônus 1: Quadro de Conquistas" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
-                  <img src={bonusLivro} alt="Bônus 2: Mini Livro Para Colorir — Animais e Natureza" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
+                  <img src={bonusQuadro.url} alt="Bônus 1: Quadro de Conquistas" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
+                  <img src={bonusLivro.url} alt="Bônus 2: Mini Livro Para Colorir — Animais e Natureza" width={768} height={1100} loading="lazy" className="aspect-[7/10] w-full rounded-xl object-contain shadow-soft" />
                 </div>
               </div>
               <div className="flex flex-col gap-5 p-6 sm:p-8">
